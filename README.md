@@ -20,8 +20,8 @@ uv pip install pycryptodome typer rich
 ```
 
 ## openclaw调用
-![发送验证码](assets/send-sms-demo.jpg)
-![查询电费](assets/usage-query-demo.png)
+![查询电费-01](assets/usage-query-demo-01.png)
+![查询电费-02](assets/usage-query-demo-02.jpg)
 
 ## 致谢
 
