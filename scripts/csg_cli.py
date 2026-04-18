@@ -39,18 +39,17 @@ def get_account(client: CSGClient, account_idx: int = 0) -> CSGElectricityAccoun
 
 
 @app.command()
-def login_sms(phone: str, password: str = None):
-    """Login with SMS code."""
+def send_sms(phone: str):
     client = CSGClient()
     client.api_send_login_sms(phone)
-    console.print("[green]SMS sent. Enter 6-digit code:[/green]")
-    code = input().strip()
+    console.print("[green]SMS sent to {}. Check your phone for the 6-digit code.[/green]".format(phone))
+    console.print("[yellow]Next: Run 'login-sms PHONE CODE' to complete login.[/yellow]")
 
-    if password:
-        auth_token = client.api_login_with_password_and_sms_code(phone, password, code)
-    else:
-        auth_token = client.api_login_with_sms_code(phone, code)
 
+@app.command()
+def login_sms(phone: str, code: str):
+    client = CSGClient()
+    auth_token = client.api_login_with_sms_code(phone, code)
     client.set_authentication_params(auth_token)
     with open(SESSION_FILE, "w") as f:
         json.dump(client.dump(), f)

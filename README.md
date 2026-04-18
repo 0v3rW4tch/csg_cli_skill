@@ -14,7 +14,14 @@
 ## 使用前提
 
 - 已安装 `uv`（推荐）或 `python`
-- 已安装依赖：`typer` 和 `rich`
+- 已安装依赖：`typer` ，`rich` ，`pycryptodome`
+```bash
+uv pip install pycryptodome typer rich
+```
+
+## openclaw调用
+![alt text](image.png)
+![alt text](683668a5fbc9b275d4261f33968df704.jpg)
 
 ## 致谢
 

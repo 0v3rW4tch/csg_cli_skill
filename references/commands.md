@@ -2,27 +2,35 @@
 
 ## Authentication Commands
 
-### login-sms
-Login with SMS verification code.
+### send-sms
+Step 1: Send SMS verification code to phone.
 
 ```bash
-# Interactive - will prompt for 6-digit code
-uv run python scripts/csg_cli.py login-sms PHONE
-
-# With password (alternative method)
-uv run python scripts/csg_cli.py login-sms PHONE --password PASSWORD
+uv run python scripts/csg_cli.py send-sms PHONE
 ```
 
 **Arguments:**
-- `PHONE` (required): Phone number for SMS verification
-
-**Options:**
-- `--password`: Optional password for dual authentication
+- `PHONE` (required): Phone number to receive SMS code
 
 **Output:**
 ```
-SMS sent. Enter 6-digit code:
-[User enters code]
+SMS sent to PHONE. Check your phone for the 6-digit code.
+Next: Run 'login-sms PHONE CODE' to complete login.
+```
+
+### login-sms
+Step 2: Login with phone and SMS code.
+
+```bash
+uv run python scripts/csg_cli.py login-sms PHONE CODE
+```
+
+**Arguments:**
+- `PHONE` (required): Phone number used for SMS
+- `CODE` (required): 6-digit SMS verification code
+
+**Output:**
+```
 Logged in successfully!
 ```
 
@@ -212,13 +220,16 @@ uv run python scripts/csg_cli.py year-stats 2026 --account 0
 # 1. Check if dependencies are available
 uv run python scripts/csg_cli.py --help
 
-# 2. Login with SMS
-uv run python scripts/csg_cli.py login-sms 13800138000
+# 2. Send SMS code
+uv run python scripts/csg_cli.py send-sms 13800138000
 
-# 3. Verify login
+# 3. Enter the code you received
+uv run python scripts/csg_cli.py login-sms 13800138000 123456
+
+# 4. Verify login
 uv run python scripts/csg_cli.py status
 
-# 4. List accounts
+# 5. List accounts
 uv run python scripts/csg_cli.py accounts
 ```
 

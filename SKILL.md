@@ -24,7 +24,8 @@ uv run python scripts/csg_cli.py status
 
 - **If `session.json` does NOT exist** → Not logged in, proceed to Step 3
 - **If `session.json` exists but `status` shows "Session expired"** → Session invalid, proceed to Step 3
-- **If `status` shows "Logged in"** → Ready to query data
+- **If `status` shows "Logged in"** → Ready to query data. **Do NOT ask for phone number or call send-sms.** Just proceed with the query.
+
 
 ### Step 3: Login if needed
 
@@ -109,6 +110,7 @@ Run `accounts` command to see all account indices.
 
 - Session persists in `session.json` file
 - Data has ~2 day delay for current month
+- **Yesterday's data available after 17:00 the next day** 
 - Last year's data updated during first 7 days of January
 
 ## Detailed Documentation
